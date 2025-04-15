@@ -1,0 +1,202 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 0;
+  background: #ddc194;
+  margin-bottom: 20px;
+}
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .main_container {
+  width: 1440px;
+}
+.books {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.book {
+  width: 350px;
+  background: #eddeb6;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+}
+.book h2 {
+  text-align: center;
+  padding-bottom: 10px;
+}
+.book .book_image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: solid 2px #f66f5b;
+  border-top: solid 2px #f66f5b;
+  width: 100%;
+}
+
+.book .book_image img {
+  width: 150px;
+}
+.book .book_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid 2px #f66f5b;
+  width: 100%;
+}
+
+.book .book_info .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 20px 0 10px 0;
+}
+.book .book_info .top .price {
+  color: red;
+}
+.book .book_info .top .like {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+.book .book_info .top .like img {
+  cursor: pointer;
+}
+
+.book .book_info .bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+.book .book_info .bottom table tr td:nth-child(odd) {
+  font-weight: bold;
+}
+
+/* dar inja be jae gozashatn :dar <td>:milad</td> minivisim td:nth-child
+ ::befor gabl hame td ha mizare ama ma mikham faghat ghabl az milad ha bezare 
+ bekhatre hamin az even yani zoj estefade mikonim */
+.book .book_info .bottom table tr td:nth-child(even)::before {
+  content: ": ";
+}
+
+.book .comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  width: 100%;
+}
+.book .comments h2 {
+  width: 90%;
+  text-align: left;
+  font-size: 17px;
+}
+/* agar komment ha ziyad bashad bayad scroll shavavd 
+over flow dar khat y ha */
+.book .comments .table-container {
+  width: 90%;
+  height: 120px;
+  overflow-y: scroll;
+}
+
+/* inro az chat gpt bardashtam ta rank scroll baram ro taghir bedam 
+ Custom scrollbar for Chrome, Edge, Safari */
+.book .comments .table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(#f66f5b, #482716);
+  border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #f66f5b;
+}
+
+/*bean radifhae table fasele ro in jore eijad mikonim  */
+.book .comments table tr {
+  margin-bottom: 5px;
+  display: inline-block;
+}
+/* neveshte toe khane jadval bere bala vertical -alighn top midim  */
+.book .comments table tr td:nth-child(odd) {
+  min-width: 100px;
+  vertical-align: top;
+}
+
+.book .comments table tr td:nth-child(even)::before {
+  content: ": ";
+}
+.book .add_comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+.book .add_comment input {
+  background: #fdefec;
+  outline: none;
+  width: 80%;
+  border: none;
+  border-bottom: solid 1px #ffe6e2;
+  padding: 2px 2px;
+}
+.book .add_comment img {
+  width: 22px;
+  cursor: pointer;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  background: #ddc194;
+  margin-top: 20px;
+}
+
+footer .footer_container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 30px 0;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+@media (max-width: 380px) {
+  .book {
+    width: 280px;
+  }
+  .book h2 {
+    font-size: 19px;
+  }
+}
