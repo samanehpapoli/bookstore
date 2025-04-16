@@ -139,6 +139,11 @@ over flow dar khat y ha */
 .table-container::-webkit-scrollbar-thumb:hover {
   background: #f66f5b;
 }
+.book .comments table tbody{
+  display: flex;
+  flex-direction: column;
+
+}
 
 /*bean radifhae table fasele ro in jore eijad mikonim  */
 .book .comments table tr {

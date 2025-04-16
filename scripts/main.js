@@ -10,14 +10,22 @@ function init() {
 function updateFromLocalStorage() {
   books = getFromLocalStorage("books");
 }
-
+// like hara dar edemeh in tabe ezafe mikonim ba esfade az function lenderLike(index)
+// va dar akhar in tabe tabe lenderLike(index)ra sedakonim
 function renderBooks() {
   let booksElement = document.getElementById("books");
   booksElement.innerHTML = "";
   for (i = 0; i < books.length; i++) {
     booksElement.innerHTML += getBookTemplatre(i);
-  }
+    lenderLikes(i);
+    renderComments(i);
+   
 }
+}
+function lenderLikes(index){
+  document.getElementById("like-wrapper" + index).innerHTML = getLikeTemplate(index);
+}
+
 
 // in shart chek mikonad red ast ya na barae in kar dobare mirim to moteghayer books[index]
 // ghesmate .liked shart barasi mikonim true ast agar are like-red agar na like khali
@@ -33,8 +41,9 @@ function getLikeStatus(index) {
 // age ghermezesh raft yeki kam beshe
 // avalin kar ye onclik mizarim dar khat funktion like onclick="likeBook()"
 // mohem mohem khili mohem onclick dorost benevis
-// mirim to motrghayae books yeki az addad kam mikonim
-// baraye in ke taghir dade shodebemenad  bayad dobare render shavad
+// mirim to motrghayae books yeki az addad kam mikonim 
+// dige nemiyam render konimrender  renderBooks() bar midarim bayad renederlikes() benevisim
+
 function likeBook(index) {
   if (books[index].liked === true) {
     books[index].likes--;
@@ -44,13 +53,11 @@ function likeBook(index) {
     books[index].liked = true;
   }
   saveToLocalStorage("books", books);
-  renderBooks();
+  lenderLikes(index)
 }
 
-// template ma dar halghe ast ama barae avardan commet ha
-// ma bayad ye halghe digar dashte bashim ta comment ha ra biyavarad
-// dar ghesmat table yek funktion  ${loadComments()} ta in tabe tr hara beyavarad
-//  ${loadComments(index)} in index index ketabas ke alan toshim.
+
+//  ${renderComments(index)} in index index ketabas ke alan toshim.
 //  ma mikhym be ezae har ketab be ezae komment haie ke dare tr copy konam
 // aval khali mikonim badesh be andaze tol halghe ke manzor tr hast++
 //  bad ba += tr badi ra michasbonimbahesh
@@ -61,7 +68,7 @@ function likeBook(index) {
 // bad az comment chon be arry miresim bayad []bezarim
 //if vared shode inja be in dalil ast ke aya commente hast ya na
 // agar nist benevise : Es gipt keinen Komentare
-function loadComments(index) {
+function renderComments(index) {
   let comments = "";
   if (books[index].comments.length > 0) {
     for (let i = 0; i < books[index].comments.length; i++) {
@@ -70,24 +77,29 @@ function loadComments(index) {
   } else {
     comments = getEmptyCommentTemplate();
   }
-
-  return comments;
+// dige return nemikonim balke id table in ja miyarim va mosavi = ghara midim
+document.getElementById("comment-wrapper"+index).innerHTML =comments;
+ 
 }
 
 // dar ghesmst input id id="addCommentInput" ezafe mikonim ama ma bayad esmesh ro tori bezarim
 //  ke heme input hae ketaba ro dar bar begire na yeki bekhater hamin esmesho
 //  (vaghti dar incpect negah konim tamame id hae input yek id dar pas payad ) =>("addCommentInput" + index) index ra ezafe mikonim
 // push mikonim deghat kon object ezafe kon ama push akhr ezafe mikone ma bayad unshift bezarim
+// chon Niko khate taghir emal konim sige kolesh render nemishe bekhater hamin value 
+// az addCommentInputValue migirim va be comment: addCommentInputElement.value, ezafeh mikonim
 function addComment(index) {
-  let addCommentInputValue = document.getElementById(
-    "addCommentInput" + index
-  ).value;
+  let addCommentInputElement= document.getElementById( "addCommentInput" + index);
   books[index].comments.unshift({
     name: "Samaneh",
-    comment: addCommentInputValue,
+    comment: addCommentInputElement.value,
   });
+  // inja vaghti comment ro nevest va send kard khli she va amade mikonim 
+  // dobare bare commen jadid ba focus
   saveToLocalStorage("books", books);
-  renderBooks();
+  renderComments(index);
+  addCommentInputElement.value = '';
+  addCommentInputElement.focus();
 }
 
 // ba har bar refresh tamame info jadid mire bad lacalstorage dashte bashim mirim az notiz block miyarim

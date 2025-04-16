@@ -1,7 +1,7 @@
-// <img src="./assets/icon/like.png" alt="">
-//  dar inja mitavanim yek funktion dashte bashim ta shrayet
-//  like ra barresi konad
-// ./assets/icon/${getLikeStatus()}
+/**  <div class="like"> bayad monhaser be fard shavad barae har ketab bekhtrre hamin behesh id midim 
+ * span in ghesmat ra bar midarim va dar yek template digar ghara midahim
+*/
+
 function getBookTemplatre(index) {
   return `<div class="book">
               <h2>${books[index].name}</h2> 
@@ -11,12 +11,7 @@ function getBookTemplatre(index) {
               <div class="book_info">
                   <div class="top"> 
                       <div class="price">${books[index].price}</div>
-                      <div class="like">
-                        <span>${books[index].likes}</span>
-                        <img src="./assets/icon/${getLikeStatus(
-                          index
-                        )}" onclick="likeBook(${index})" alt="like">
-                      </div>
+                      <div class="like" id=like-wrapper${index}> </div>
                   </div>
                   <div class="bottom">
                       <table>
@@ -38,8 +33,7 @@ function getBookTemplatre(index) {
               <div class="comments">
                 <h2>Komentare:</h2>
                 <div class="table-container">
-                    <table>
-                        ${loadComments(index)}
+                    <table id="comment-wrapper${index}">
                     </table>
                 </div>
               </div>
@@ -63,4 +57,9 @@ function getCommentTemplate(bookIndex, commentIndex) {
 // colspan="2" yani in ke in khune (cell) do ta soton ro be sorat yekja migire
 function getEmptyCommentTemplate() {
     return `<tr><td colspan="2"> Es gibt keinen Komentar</td></tr>`;
+}
+// in templete likast
+function getLikeTemplate(index) {
+return `<span>${  books[index].likes }</span>
+        <img src="./assets/icon/${getLikeStatus(index)}" onclick="likeBook(${index})" alt="like"></img>`;    
 }
